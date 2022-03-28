@@ -1,0 +1,43 @@
+﻿@using LocalApi.Models
+
+@model Request 
+<head>
+  
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<nav class="navbar navbar-light bg-light justify-content-center">
+  <form asp-action="Index" asp-controller="Home" class="form-inline">
+    <input style="width:500px" class="form-control mr-sm-2" asp-for="RequestUrl" type="search" placeholder="Введите имя репозитория..." aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+  </form>
+</nav>
+
+@if (ViewBag.Requests!=null)
+{
+    @foreach (var x in ViewBag.Requests)
+    {
+        <div class="row justify-content-md-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@x.Author</h5>
+                        <p class="card-text">@x.ProjectName</p>
+                        <p class="card-text">Stargazers : @x.StarGazers, Watchers : @x.Watchers</p>       
+                        <a href="@x.Url" class="btn btn-primary">GitHub link</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+
+    
+    
+    }
+}
+else
+{
+    <h3> Поиск репозиториев...</h3>
+}
